@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loan Approval Prediction</title>
+    <style>
+        body { font-family: Arial; background: #eef2f3; text-align: center; padding: 30px; }
+        form { background: white; padding: 20px; border-radius: 10px; display: inline-block; }
+        input, select { margin: 5px; padding: 8px; width: 250px; }
+        button { padding: 10px 20px; background: green; color: white; border: none; cursor: pointer; margin-top: 10px; }
+        h2 { color: darkblue; }
+    </style>
+</head>
+<body>
+    <h2>Loan Approval Prediction</h2>
+    <form method="POST" action="/predict">
+
+        <select name="gender" required>
+            <option value="">Gender</option>
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+        </select><br>
+
+        <select name="married" required>
+            <option value="">Married</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select><br>
+
+        <input type="number" name="dependents" placeholder="Dependents" required><br>
+
+        <select name="education" required>
+            <option value="">Education</option>
+            <option value="0">Graduate</option>
+            <option value="1">Not Graduate</option>
+        </select><br>
+
+        <select name="self_employed" required>
+            <option value="">Self Employed</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select><br>
+
+        <input type="number" step="0.01" name="applicant_income" placeholder="Applicant Income" required><br>
+        <input type="number" step="0.01" name="coapplicant_income" placeholder="Co-applicant Income" required><br>
+        <input type="number" step="0.01" name="loan_amount" placeholder="Loan Amount" required><br>
+        <input type="number" step="0.01" name="loan_amount_term" placeholder="Loan Amount Term (in days)" required><br>
+
+        <select name="credit_history" required>
+            <option value="">Credit History</option>
+            <option value="1">Good (1)</option>
+            <option value="0">Bad (0)</option>
+        </select><br>
+
+        <select name="property_area" required>
+            <option value="">Property Area</option>
+            <option value="0">Rural</option>
+            <option value="1">Semiurban</option>
+            <option value="2">Urban</option>
+        </select><br>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction_text %}
+        <h3>{{ prediction_text }}</h3>
+    {% endif %}
+</body>
+</html>
